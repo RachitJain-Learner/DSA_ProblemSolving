@@ -4,16 +4,62 @@
 #include<bits/stdc++.h> 
 using namespace std; 
 
-// } Driver Code Ends
-//User function template for C++
-
 // Not possible using for loop since we have to only take array elements, no infinite supply => 2D DP
 // If infinite supply then use "for loop" to take repetitive cases
 
 class Solution{  
 public:
+    // Space Optimisation
+    bool solveSpace(vector<int>& arr, int sum){
+        
+        int n = arr.size() ;
+        vector<int> prev(sum+1, 0), curr(sum+1, 0) ;
+        
+        curr[0] = true ;
+        prev[0] = true ;
+        
+        for(int ind = n-1; ind >= 0 ; ind--){
+            for(int s = 0 ; s <= sum ; s++){
+                bool include = 0;
+                if(s >= arr[ind]){
+                    include = prev[s-arr[ind]] ;
+                }
+                bool exclude = prev[s] ;
+                
+                curr[s] = include || exclude ;
+            }
+            prev = curr ;
+        }
+        return prev[sum] ;
+    }
+    bool isSubsetSum(vector<int>arr, int sum){
+        return solveSpace(arr, sum);  
+    }
 
-    
+    // Tabulation
+    bool solveTab(vector<int>& arr, int sum){
+        int n = arr.size() ;
+        vector<vector<int>>dp(n+1, vector<int>(sum+1, 0)) ;
+        
+        for(int i=0 ; i<=n ; i++)
+            dp[i][0] = true ;
+        
+        for(int ind = n-1; ind >= 0 ; ind--){
+            for(int s = 1 ; s <= sum ; s++){    //First column is filled
+                bool include = 0;
+                if(s >= arr[ind]){
+                    include = dp[ind+1][s-arr[ind]] ;
+                }
+                bool exclude = dp[ind+1][s] ;
+                
+                dp[ind][s] = include || exclude ;
+            }
+        }
+        return dp[0][sum] ;
+    }
+    bool isSubsetSum(vector<int>arr, int sum){
+        return solveTab(arr, sum);
+    }
 
     // Memoization Method-1 : from 0 to n
     bool solveMemo(vector<int>& arr, int sum, int ind, vector<vector<int>>& dp){
