@@ -94,7 +94,6 @@ public:
         if(i< 0 || j < 0)
             return 0 ;
 
-
         if(a[i] == b[j])
             return 1 + solve(a, b, i-1, j-1);
         
@@ -102,7 +101,6 @@ public:
         int ans2 = solve(a, b, i-1, j) ;
 
         return max(ans1, ans2) ;
-        
     }
     int longestCommonSubsequence(string &a, string &b) {
         return solve(a, b, a.length()-1, b.length()-1);
