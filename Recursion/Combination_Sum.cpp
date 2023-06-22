@@ -1,9 +1,11 @@
+// Combination Sum : Return combination of elements whose sum is K 
+
 // Combination Sum I
 
 class Solution {
 public:
     void helper(int ind, int sum, vector<int> &A, vector<int> &temp, vector<vector<int>> &ans){
-        
+
         if(sum == 0){   //base case
             ans.push_back(temp) ;
             return ;
@@ -15,9 +17,9 @@ public:
         helper(ind, sum-A[ind], A, temp, ans) ; //take
         temp.pop_back() ;
         
-        helper(ind+1, sum, A, temp, ans) ; //not take
-        
+        helper(ind+1, sum, A, temp, ans) ; //not take   
     }
+
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> ans ;
         vector<int> temp ;
@@ -31,6 +33,7 @@ public:
 
 
 // Combination Sum II
+// Return unique combination of elements whose sum is K from array containing duplicates 
 
 class Solution {
     void solve(int ind, vector<int>& a, int target, vector<int> &temp, vector<vector<int>> &ans){
