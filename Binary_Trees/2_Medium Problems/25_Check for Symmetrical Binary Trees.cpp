@@ -1,17 +1,18 @@
 // L25. Check for Symmetrical Binary Trees 
 
+// CodeStudio
 bool sameSubTree(BinaryTreeNode<int>* root1, BinaryTreeNode<int>* root2){
     
     if(root1 == NULL || root2 == NULL){
         return root1 == root2 ;
     }
-    bool oueterTree =  sameSubTree(root1->left, root2->right) ;
+    bool outerTree =  sameSubTree(root1->left, root2->right) ;
     bool innerTree =  sameSubTree(root1->right, root2->left) ;
 
     return (root1->data == root2->data) && innerTree && outerTree ;
 }
 
-// Base case - different way
+// Base case in a different way
 bool sameSubTree(BinaryTreeNode<int>* root1, BinaryTreeNode<int>* root2){
     if(root1 == NULL && root2 == NULL){
         return true ;
