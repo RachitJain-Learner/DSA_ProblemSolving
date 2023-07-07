@@ -27,7 +27,6 @@ class Solution
 	           // }
 	        }
 	    }
-	       
 	    while(!q.empty()){
 	        int row = q.front().first.first ;
 	        int col = q.front().first.second ;

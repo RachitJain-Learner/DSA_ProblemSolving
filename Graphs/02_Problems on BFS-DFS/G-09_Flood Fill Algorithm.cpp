@@ -32,7 +32,7 @@ public:
     }
 };
 
-// Method 2 - Passing single 2D grids
+// Method 2 - Passing single 2D grid copy in function
 class Solution {
 private:
     void dfs(int row, int col, vector<vector<int>>& copy, int newColor, int initColor, int drow[], int dcol[] ){
