@@ -1,7 +1,5 @@
 // 26. Print Root to Node Path in Binary Tree - CodeStudio
 
-
-
 // Similar GFG - Print All Root to Leaf Path in Binary Tree
 
 /* Structure of Node
