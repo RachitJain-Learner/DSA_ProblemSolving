@@ -42,7 +42,9 @@ int uniquePaths(int m, int n) {
 
 //  Tabulation 
 int uniquePaths(int m, int n) {
-    // filled the first row & first col
+    // filling the first row & first col with 1 works since there is no 
+	// obstruction in path when you reach last row & last col
+	// but not a good way
 	vector<vector<int>> dp(m+1, vector<int>(n+1, 1)) ;
 	int row = m ;
 	int col = n ;

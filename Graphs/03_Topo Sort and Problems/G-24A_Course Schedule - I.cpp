@@ -45,3 +45,41 @@ string canFinish(vector<vector<int>>& prerequisites, int n, int m)
     }
     return (cnt == n) ? "Yes" : "No" ; 
 }
+
+
+// Leetcode - trying another way
+bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        
+        // making adjacencyList & indegree array
+        vector<int> adjList[numCourses] ;
+        vector<int> indegree(numCourses, 0) ;
+        for(auto it: prerequisites){
+            adjList[it[1]].push_back(it[0]) ;
+            indegree[it[0]]++ ;
+        }
+        
+        // Initialising the queue
+        queue<int> q ;
+        for(int i=0 ; i<numCourses ; i++){
+            if(indegree[i] == 0)
+                q.push(i) ;
+        }
+
+        // Traversing queue nodes
+        int countNodes = 0 ;
+        while(!q.empty()){
+            int node = q.front() ;
+            q.pop() ;
+
+            countNodes++ ;
+
+            for(auto temp: adjList[node]){
+                indegree[temp]-- ;
+                if(indegree[temp] == 0){
+                    q.push(temp) ;
+                }
+            }
+        }
+        return countNodes == numCourses ;
+    }
+};
