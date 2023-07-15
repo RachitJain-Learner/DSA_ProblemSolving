@@ -1,14 +1,14 @@
 // Coin Change 2 (DP - 22)
+// In such target problems, declare dp[ind][targ] ie. target should be second index 
 
 class Solution {
 public:
-
     // Space Optimisation
     int solve(int amount, vector<int>& coins){
         int n = coins.size() ;
         vector<int> prev(amount+1, 0), curr(amount+1, 0) ;
         
-        prev[0] = 1 ;
+        prev[0] = 1 ;   // not needed
         curr[0] = 1 ;
         
         for(int ind = n-1 ; ind >= 0 ; ind--){
@@ -25,7 +25,6 @@ public:
         }
         return prev[amount] ;
     }
-
     int change(int amount, vector<int>& coins) {
         return solve(amount, coins) ;
     }
