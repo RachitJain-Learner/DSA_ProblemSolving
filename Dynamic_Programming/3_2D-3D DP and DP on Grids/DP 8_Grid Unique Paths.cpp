@@ -39,6 +39,27 @@ int uniquePaths(int m, int n) {
 	return solve(m, n) ;
 }
 
+// Method-3
+int uniquePaths(int m, int n) {
+        vector<int> prev(n, 0) ;
+        vector<int> curr(n, 0) ;
+        
+        // learning--> m-1 in for-loop(m-1 to 0) is curr
+        curr[n-1] = 1 ;
+        for(int row=m-1 ; row >= 0 ; row--){
+            for(int col=n-2 ; col >= 0 ; col--){
+                if(row == m-1 && col == n-1) continue ;  //curr[n-1] = 1 
+                
+                int down = 0, right = 0 ;
+                if(row < m-1) down = prev[col] ;	//row+1 = m -> prev, row = m-1 -> curr
+                if(col < n-1) right = curr[col+1] ;
+
+                curr[col] = down + right ;
+            }
+            prev = curr ;
+        }
+        return prev[0] ;
+    }
 
 //  Tabulation 
 int uniquePaths(int m, int n) {
