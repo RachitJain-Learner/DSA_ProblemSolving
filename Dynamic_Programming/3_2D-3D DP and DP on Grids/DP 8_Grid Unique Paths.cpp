@@ -79,6 +79,26 @@ int uniquePaths(int m, int n) {
 	return solve(m, n) ;
 }
 
+// Method-3 : Striver Approach
+// considered base case inside for-loop -->  imp to use continue if case
+int uniquePaths(int m, int n) {
+        vector<vector<int>> dp(m, vector<int>(n, 0)) ;
+        
+        dp[m-1][n-1] = 1 ;
+        for(int row=m-1 ; row >= 0 ; row--){
+            for(int col=n-1 ; col >= 0 ; col--){
+                if(row == m-1 && col == n-1) continue ;  //dp[m-1][n-1] = 1 
+                
+                int down = 0, right = 0 ;
+                if(row < m-1) down = dp[row+1][col] ;
+                if(col < n-1) right = dp[row][col+1] ;
+
+                dp[row][col] = down + right ;
+            }
+        }
+        return dp[0][0] ;
+    }
+
 //  Memoization 
 int solveMemo(int row, int col, vector<vector<int>>& dp){
 	if(row == 0 && col == 0){
