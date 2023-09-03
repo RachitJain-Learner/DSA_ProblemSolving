@@ -1,8 +1,36 @@
 // 10. Iterative Inorder Traversal in Binary Tree 
 
+// Method-1 : InterviewBit Solution
+vector<int> Solution::inorderTraversal(TreeNode* A) {
+    vector<int> ans ;
+    if(A == NULL){
+        return ans ;
+    }
+    stack<TreeNode*> st ;
+    TreeNode* node = A ;
+    
+    while(!st.empty() || node){
+        if(node){
+            st.push(node) ;
+            node = node->left ;
+        }
+        else{
+            node = st.top() ;
+            st.pop() ;
+            
+            ans.push_back(node->val) ;
+               
+            node = node->right ;   
+        }        
+    }
+    return ans ;
+}
+
+
+// Method-2 : Striver Solution
 vector<int> getInOrderTraversal(TreeNode *root)
 {	
-	vector<int> ans ;
+    vector<int> ans ;
     if(root == NULL)    
         return ans ;
 
@@ -27,5 +55,5 @@ vector<int> getInOrderTraversal(TreeNode *root)
             temp = temp->right ;
         }
     }
-	return ans ;
+    return ans ;
 }
